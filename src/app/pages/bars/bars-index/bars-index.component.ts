@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Bar } from '../../../services/bar';
 import {ApiService} from '../../../services/api.service';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-bars-index',
@@ -9,7 +10,8 @@ import {ApiService} from '../../../services/api.service';
   styleUrls: ['./bars-index.component.css']
 })
 export class BarsIndexComponent implements OnInit {
-  bars: Bar[];
+  displayedColumns = ['name', 'street'];
+  bars: Bar[] = [];
 	bar: Bar = {
     id: 1,
     name: 'Windstorm',
@@ -18,10 +20,20 @@ export class BarsIndexComponent implements OnInit {
     zip: 'test'
   };
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.getBars();
+  }
+
+  ngAfterViewInit() {
+    
+  }
+
+  handlePageEvent(e){
+    console.log(e);
   }
 
   getBars(): void {

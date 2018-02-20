@@ -7,6 +7,11 @@ import { AppRoutingModule } from './/app-routing.module';
 import { BarsIndexComponent } from './pages/bars/bars-index/bars-index.component';
 import { BarsDetailsComponent } from './pages/bars/bars-details/bars-details.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 import {ApiService} from './services/api.service';
 
 @NgModule({
@@ -16,9 +21,14 @@ import {ApiService} from './services/api.service';
     BarsDetailsComponent
   ],
   imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [
   	ApiService
