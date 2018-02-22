@@ -5,7 +5,7 @@ import { BarsDetailsComponent } from './pages/bars/bars-details/bars-details.com
 
 const routes: Routes = [
   { path: 'bars', component: BarsIndexComponent },
-  { path: 'bars/:id',      component: BarsDetailsComponent },
+  { path: 'bars/:id', component: BarsDetailsComponent },
   { path: '',
     redirectTo: '/bars',
     pathMatch: 'full'
@@ -14,6 +14,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [ RouterModule.forRoot(routes) ],
-  	exports: [ RouterModule ]
+  	exports: [ RouterModule],
+  	declarations: []
 })
 export class AppRoutingModule {}

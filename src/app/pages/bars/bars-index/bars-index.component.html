@@ -1,21 +1,3 @@
 <div class="mat-elevation-z8">
-	<mat-table #table [dataSource]="bars">
-		<ng-container matColumnDef="name">
-	      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-	      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-	    </ng-container>
-	    <ng-container matColumnDef="street">
-	      <mat-header-cell *matHeaderCellDef> Street </mat-header-cell>
-	      <mat-cell *matCellDef="let element"> {{element.street}} </mat-cell>
-	    </ng-container>
-	    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-	    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-	</mat-table>
-	<mat-paginator  
-		[length]="bars.length"
-		[pageSize]="10"
-		[pageSizeOptions]="[5, 10, 20]"
-		[showFirstLastButtons]="true"
-		(page)="handlePageEvent($event)">
-  </mat-paginator>
+	<app-custom-table></app-custom-table>
 </div>

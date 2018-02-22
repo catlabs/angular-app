@@ -1,16 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { CustomTableModule } from './component/custom-table/custom-table.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/app-routing.module';
 import { BarsIndexComponent } from './pages/bars/bars-index/bars-index.component';
 import { BarsDetailsComponent } from './pages/bars/bars-details/bars-details.component';
-
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
 
 import {ApiService} from './services/api.service';
 
@@ -24,11 +21,8 @@ import {ApiService} from './services/api.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    HttpClientModule,
-    MatButtonModule, 
-    MatCheckboxModule,
-    MatPaginatorModule,
-    MatTableModule
+    CustomTableModule,
+    HttpClientModule
   ],
   providers: [
   	ApiService
