@@ -1,7 +1,30 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<h1>Angular Router</h1>
-<nav>
-  <a routerLink="/bars" routerLinkActive="active">List of bars</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="main">
+    <mat-toolbar class="justify-between mb2">
+        <h1 class="mt1 left">Angular App</h1>
+        <div class="right">
+            <button class="right" mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-menu #appMenu="matMenu" xPosition="before">
+              <a mat-menu-item routerLink="/bars" routerLinkActive="active">List of bars</a>
+              <button mat-menu-item>Help</button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+
+    <!--<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill >
+      <div fxFlex="15" class="sec1" >
+          first-section
+      </div>
+      <div fxFlex="30" class="sec2" >
+          second-section
+      </div>
+      <div fxFlex="55" class="sec3" >
+          third-section
+      </div>
+    </div>-->
+    <!--The content below is only a placeholder and can be replaced.-->
+
+    <router-outlet></router-outlet>
+</div>
 

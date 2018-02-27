@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BarsIndexComponent } from './pages/bars/bars-index/bars-index.component';
 import { BarsDetailsComponent } from './pages/bars/bars-details/bars-details.component';
 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +17,9 @@ import { BarsDetailsComponent } from './pages/bars/bars-details/bars-details.com
   ],
   imports: [
     CustomTableModule,
-    SharedModule
+    SharedModule,
+    MatMenuModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
