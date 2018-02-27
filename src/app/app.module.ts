@@ -1,15 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { CustomTableModule } from './component/custom-table/custom-table.module';
+import { SharedModule } from './shared.module';
+import { CustomTableModule } from './components/custom-table/custom-table.module';
 
 import { AppComponent } from './app.component';
 import { BarsIndexComponent } from './pages/bars/bars-index/bars-index.component';
 import { BarsDetailsComponent } from './pages/bars/bars-details/bars-details.component';
-
-import {ApiService} from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -18,15 +13,10 @@ import {ApiService} from './services/api.service';
     BarsDetailsComponent
   ],
   imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
     CustomTableModule,
-    HttpClientModule
+    SharedModule
   ],
-  providers: [
-  	ApiService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

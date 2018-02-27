@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { SharedModule } from './../../shared.module';
 import { CustomTableComponent } from './custom-table.component';
 
-import {ApiService} from '../../services/api.service';
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     MatTableModule,
     MatPaginatorModule
   ],
@@ -19,8 +17,6 @@ import {ApiService} from '../../services/api.service';
   declarations: [
     CustomTableComponent
   ],
-  providers: [
-  	ApiService
-  ]
+  providers: []
 })
 export class CustomTableModule { }
