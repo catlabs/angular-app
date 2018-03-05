@@ -1,18 +1,24 @@
-<mat-table #table [dataSource]="items">
-	<ng-container matColumnDef="name">
+<div class="relative">
+  <mat-table #table [dataSource]="items" matSort (matSortChange)="handleSortChange($event)">
+    <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> <a [routerLink]="['/bars', element.id]">{{element.name}}</a> </mat-cell>
     </ng-container>
     <ng-container matColumnDef="street">
-      <mat-header-cell *matHeaderCellDef> Street </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Street </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.street}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-<mat-paginator  
-	[length]="100"
-	[pageSize]="10"
-	[pageSizeOptions]="[5, 10, 20]"
-	[showFirstLastButtons]="true">
-</mat-paginator>
+  </mat-table>
+  <mat-paginator  
+    [length]="paginationInfos.total"
+    [pageSize]="paginationInfos.itemsByPage"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true"
+    (page)="handlePageEvent($event)">
+  </mat-paginator>
+  <div class="spinner" *ngIf="isLoading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</div>

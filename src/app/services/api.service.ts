@@ -12,8 +12,8 @@ export class ApiService {
   	return this.http.get<any>(environment.apiUrl+apiPath)
 	}
 
-	getItems(apiPath): Observable<any[]> {
-	  return this.http.get<any[]>(environment.apiUrl+apiPath)
+	getItems(apiPath, params = {}): Observable<any> {
+	  return this.http.get<any[]>(environment.apiUrl+apiPath, { params: params })
 	}
 
 	updateItem(apiPath, form){

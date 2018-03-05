@@ -8,9 +8,20 @@ import {ApiService} from '../../services/api.service';
 })
 export class CustomTableComponent implements OnInit {
   @Input() apiPath: String;
+  @Input() displayedColumns: Array<String>;
 
-	displayedColumns = ['name', 'street'];
+  isLoading = false;
   items = [];
+  paginationInfos = {
+    page: 1,
+    itemsByPage: 10,
+    total: 0
+  };
+  params = {
+    page: 1,
+    itemsByPage: 10,
+    total: 0
+  };
 
   constructor(public apiService: ApiService) { }
 
@@ -20,11 +31,31 @@ export class CustomTableComponent implements OnInit {
   }
 
   handlePageEvent(e){
+    this.paginationInfos.page = e.pageIndex + 1;
+    this.paginationInfos.itemsByPage = e.pageSize;
+    this.params.page = e.pageIndex + 1;
+    this.params.itemsByPage = e.pageSize;
+    this.getItems();
+  }
+
+  handleSortChange(e){
     console.log(e);
+    if(e.direction){
+      this.params['sort'] = e.active+':'+e.direction;
+    }else{
+      delete this.params['sort'];
+    }
+    this.getItems();
+    //this.sortInfos = e;
   }
 
   getItems(): void {
-    this.apiService.getItems(this.apiPath).subscribe(items => this.items = items);
+    this.isLoading = true;
+    this.apiService.getItems(this.apiPath, this.params).subscribe(result => {
+      this.isLoading = false;
+      this.items = result.data;
+      this.paginationInfos.total = result.total; 
+    });
   }
 
 }

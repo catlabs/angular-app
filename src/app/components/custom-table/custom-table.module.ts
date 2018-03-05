@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 import { SharedModule } from './../../shared.module';
 import { CustomTableComponent } from './custom-table.component';
 
@@ -9,7 +10,8 @@ import { CustomTableComponent } from './custom-table.component';
   imports: [
     SharedModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     CustomTableComponent
