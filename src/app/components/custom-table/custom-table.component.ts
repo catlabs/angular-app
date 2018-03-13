@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver, Type } from '@angular/core';
 import {ApiService} from '../../services/api.service';
+import { TableHostDirective } from './table-host.directive';
+import { BarsTableComponent } from '../../pages/bars/bars-table/bars-table.component';
 
 @Component({
   selector: 'app-custom-table',
@@ -9,7 +11,11 @@ import {ApiService} from '../../services/api.service';
 export class CustomTableComponent implements OnInit {
   @Input() apiPath: String;
   @Input() displayedColumns: Array<String>;
+  @Input() c: Type<any>;
 
+  @ViewChild(TableHostDirective) tableHost: TableHostDirective;
+
+  componentRef;
   isLoading = false;
   items = [];
   paginationInfos = {
@@ -23,11 +29,36 @@ export class CustomTableComponent implements OnInit {
     total: 0
   };
 
-  constructor(public apiService: ApiService) { }
+  constructor(public apiService: ApiService, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-  	this.getItems();
-    //console.log(this.apiPath);
+    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.c);
+    
+    let viewContainerRef = this.tableHost.viewContainerRef;
+    viewContainerRef.clear();
+
+    this.componentRef = viewContainerRef.createComponent(componentFactory);
+    this.componentRef.instance.displayedColumns = this.displayedColumns;
+    this.componentRef.instance.change.subscribe((e) => this.handleChange(e));
+    this.getItems();
+  }
+
+  handleChange(e){
+    switch (e.type) {
+      case "search":
+        if(e.data) this.params['search'] = e.data;
+        break;
+
+      case "sort":
+        if(e.data.direction){
+          this.params['sort'] = e.data.active+':'+e.data.direction;
+
+        }else{
+          delete this.params['sort'];
+        }
+        break;
+    }
+    this.getItems();
   }
 
   handlePageEvent(e){
@@ -38,23 +69,13 @@ export class CustomTableComponent implements OnInit {
     this.getItems();
   }
 
-  handleSortChange(e){
-    console.log(e);
-    if(e.direction){
-      this.params['sort'] = e.active+':'+e.direction;
-    }else{
-      delete this.params['sort'];
-    }
-    this.getItems();
-    //this.sortInfos = e;
-  }
-
   getItems(): void {
     this.isLoading = true;
     this.apiService.getItems(this.apiPath, this.params).subscribe(result => {
       this.isLoading = false;
       this.items = result.data;
       this.paginationInfos.total = result.total; 
+      this.componentRef.instance.items = this.items;
     });
   }
 

@@ -8,6 +8,9 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 
@@ -25,7 +28,10 @@ import {ApiService} from './services/api.service';
     HttpModule,
     HttpClientModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     RouterModule
   ],
@@ -40,7 +46,10 @@ import {ApiService} from './services/api.service';
     HttpModule,
     HttpClientModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     RouterModule
   ],

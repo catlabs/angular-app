@@ -4,7 +4,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { SharedModule } from './../../shared.module';
 import { CustomTableComponent } from './custom-table.component';
-
+import { TableHostDirective } from './table-host.directive';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   imports: [
@@ -13,11 +14,17 @@ import { CustomTableComponent } from './custom-table.component';
     MatPaginatorModule,
     MatSortModule
   ],
+  entryComponents: [TestComponent],
   exports: [
-    CustomTableComponent
+    CustomTableComponent,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   declarations: [
-    CustomTableComponent
+    CustomTableComponent,
+    TableHostDirective,
+    TestComponent
   ],
   providers: []
 })

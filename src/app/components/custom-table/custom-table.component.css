@@ -9,3 +9,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.search{
+	text-align: center;
+	font-size: 40px;
+  line-height: 50px;
+  overflow: hidden;
+}
