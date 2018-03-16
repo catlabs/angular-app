@@ -1,3 +1,16 @@
-<div class="">
-	<app-custom-table [apiPath]="'/bars'" [displayedColumns]="['name', 'street']" [c]="table"></app-custom-table>
+<div fxLayout="row" fxLayoutGap="20px">
+	<mat-card fxFlex="100">
+		<div class="content mb2" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="flex-start center" >
+      <div fxFlex="80px">
+        <img src="/assets/icons/table.svg">
+	  	</div>
+	  	<div>
+				<h1>Table Component</h1>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<div class="mt3">
+			<app-custom-table class="mt2" [apiPath]="'/bars'" [displayedColumns]="['name', 'street']" [c]="table"></app-custom-table>
+		</div>
+	</mat-card>
 </div>

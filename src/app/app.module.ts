@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './shared.module';
 import { CustomTableModule } from './components/custom-table/custom-table.module';
 
+import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
@@ -21,6 +22,7 @@ import { BarsTableComponent } from './pages/bars/bars-table/bars-table.component
   imports: [
     CustomTableModule,
     SharedModule,
+    MatDividerModule,
     MatMenuModule,
     MatToolbarModule
   ],

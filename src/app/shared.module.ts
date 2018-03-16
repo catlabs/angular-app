@@ -6,7 +6,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -28,11 +30,13 @@ import {ApiService} from './services/api.service';
     HttpModule,
     HttpClientModule,
     MatButtonModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatCardModule,
     RouterModule
   ],
   declarations: [],
@@ -46,6 +50,8 @@ import {ApiService} from './services/api.service';
     HttpModule,
     HttpClientModule,
     MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

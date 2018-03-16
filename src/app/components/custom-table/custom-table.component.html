@@ -1,4 +1,22 @@
 <div>
+  <div class="content" fxLayout="row" fxLayoutAlign="space-between center" >
+      <div>
+          <mat-form-field>
+            <input class="center" matInput (keyup)="handleChange({type: 'search', data: $event.target.value})" placeholder="Search">
+          </mat-form-field>
+      </div>
+      <div>
+          <button mat-button [matMenuTriggerFor]="menu">Batch actions<mat-icon>keyboard_arrow_down</mat-icon></button>
+          <button mat-button>
+            <mat-icon>add</mat-icon>
+            Add Bar
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Edit</button>
+            <button mat-menu-item>Delete</button>
+          </mat-menu>
+      </div>
+  </div>
   <div>
     <ng-template appTableHost></ng-template>
     <div class="spinner" *ngIf="isLoading">

@@ -1,4 +1,15 @@
 .main{
+	padding: 0 20px;
   margin: auto;
   max-width: 1000px;
+}
+
+.app-toolbar{
+  background: linear-gradient(#475959, #152d2d);
+}
+
+.app-toolbar .logo{
+  height: 30px;
+  margin-bottom: 6px;
+  max-width: 150px;
 }
