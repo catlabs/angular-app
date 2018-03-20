@@ -1,9 +1,21 @@
-<form (ngSubmit)="onSubmit()" #barForm="ngForm">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" [(ngModel)]="bar.name" name="name">
-  </div>
+<div fxLayout="row" fxLayoutGap="20px">
+	<mat-card fxFlex="50">
+    <h2>Infos</h2>
+    <mat-divider></mat-divider>
+    <form class="mt3" [formGroup]="detailsForm" (ngSubmit)="onSubmit()" fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
 
-  <button type="submit" class="btn btn-success">Submit</button>
+      <mat-form-field>
+        <input matInput placeholder="Street" formControlName="street">
+      </mat-form-field>
 
-</form>
+      <button fxFlexAlign="flex-start" mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </mat-card>
+  <mat-card fxFlex="50">
+    {{detailsForm.value | json}}
+    {{detailsForm.status | json}}
+  </mat-card>
+</div>

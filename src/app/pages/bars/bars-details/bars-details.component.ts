@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {ApiService} from '../../../services/api.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Bar } from '../../../services/bar';
 
 @Component({
@@ -12,17 +13,28 @@ export class BarsDetailsComponent implements OnInit {
   id: Number;
   bar: any = {};
 
-  constructor(private apiService:ApiService, private route: ActivatedRoute) { }
+  detailsForm: FormGroup;
+
+  constructor(private apiService:ApiService, private route: ActivatedRoute, private fb: FormBuilder) {
+    this.detailsForm = this.fb.group({
+      name: ['', Validators.required ],
+      street: ['', Validators.required ],
+    });
+  }
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.apiService.getItems('/bars/'+this.id)
-      .subscribe(bar => this.bar = bar);
+      .subscribe(bar => {
+        this.detailsForm.setValue({
+          name: bar.name,
+          street: bar.street
+        });
+      });
   }
 
   onSubmit() { 
-    //console.log(this.bar);
-    this.apiService.updateItem('/bars/'+this.id, this.bar)
+    this.apiService.updateItem('/bars/'+this.id, this.detailsForm.value)
       .subscribe();
   }
   

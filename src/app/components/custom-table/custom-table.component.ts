@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver, Type } from '@angular/core';
+import {SelectionModel} from '@angular/cdk/collections';
 import {ApiService} from '../../services/api.service';
 import { TableHostDirective } from './table-host.directive';
 import { BarsTableComponent } from '../../pages/bars/bars-table/bars-table.component';
@@ -10,11 +11,13 @@ import { BarsTableComponent } from '../../pages/bars/bars-table/bars-table.compo
 })
 export class CustomTableComponent implements OnInit {
   @Input() apiPath: String;
-  @Input() displayedColumns: Array<String>;
   @Input() c: Type<any>;
 
   @ViewChild(TableHostDirective) tableHost: TableHostDirective;
 
+  //displayedColumns = ['select', 'name', 'street'];
+  displayedColumns = ['name', 'street'];
+  selection = new SelectionModel<Element>(true, []);
   componentRef;
   isLoading = false;
   items = [];
@@ -38,20 +41,21 @@ export class CustomTableComponent implements OnInit {
     viewContainerRef.clear();
 
     this.componentRef = viewContainerRef.createComponent(componentFactory);
-    this.componentRef.instance.displayedColumns = this.displayedColumns;
+    /*this.componentRef.instance.selection = this.selection;
     this.componentRef.instance.change.subscribe((e) => this.handleChange(e));
+    this.componentRef.instance.select.subscribe((e) => this.handleSelect(e));*/
     this.getItems();
   }
 
-  handleChange(e){
-    switch (e.type) {
+  handleChange(type, e){
+    switch (type) {
       case "search":
-        if(e.data) this.params['search'] = e.data;
+        if(e) this.params['search'] = e;
         break;
 
       case "sort":
-        if(e.data.direction){
-          this.params['sort'] = e.data.active+':'+e.data.direction;
+        if(e.direction){
+          this.params['sort'] = e.active+':'+e.direction;
 
         }else{
           delete this.params['sort'];
@@ -59,6 +63,16 @@ export class CustomTableComponent implements OnInit {
         break;
     }
     this.getItems();
+  }
+
+  handleSelect(row, e){
+    //console.log(e);
+    //console.log(row);
+    if(e.checked){
+      //this.selection.toggle(row);
+    }
+    this.selection.toggle(row);
+    console.log(this.selection.selected);
   }
 
   handlePageEvent(e){

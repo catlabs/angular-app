@@ -16,3 +16,7 @@
   line-height: 50px;
   overflow: hidden;
 }
+
+.mat-column-select {
+  overflow: visible;
+}

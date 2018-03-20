@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
@@ -26,7 +25,6 @@ import {ApiService} from './services/api.service';
     BrowserModule,
     CommonModule,
     FlexLayoutModule,
-    FormsModule,
     HttpModule,
     HttpClientModule,
     MatButtonModule,
@@ -46,7 +44,7 @@ import {ApiService} from './services/api.service';
     BrowserModule,
     CommonModule,
     FlexLayoutModule,
-    FormsModule,
+
     HttpModule,
     HttpClientModule,
     MatButtonModule,
